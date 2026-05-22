@@ -1062,6 +1062,37 @@ input::placeholder, textarea::placeholder { color: var(--text-muted); }
 
 .dash-2col { display: grid; grid-template-columns: 1.3fr 1fr; gap: 20px; align-items: start; }
 
+/* ===== Banner de cabecera por sección ===== */
+.portal-content .sec-banner {
+  display: flex; align-items: center; gap: 18px; padding: 24px 28px; margin-bottom: 28px;
+  border-radius: 18px; position: relative; overflow: hidden;
+  background: linear-gradient(120deg, #f3f8ff 0%, #e9f1ff 100%);
+  border: 1px solid rgba(0,72,255,0.12);
+}
+.portal-content .sec-banner::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: linear-gradient(180deg, #0048FF, #7AA0FF); }
+.sec-banner-ic { width: 56px; height: 56px; border-radius: 15px; background: linear-gradient(135deg, #0C2E4E, #1a3f6b); display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 8px 18px rgba(12,46,78,0.18); }
+.sec-banner-ic svg { width: 28px; height: 28px; fill: var(--gold-light); }
+.sec-banner .section-eyebrow { margin-bottom: 5px; color: var(--blue); }
+.sec-banner h2.section-title { font-size: 25px; margin-bottom: 6px; padding-left: 0; }
+.sec-banner h2.section-title::before { display: none; }
+.sec-banner .section-lead { font-size: 14px; color: var(--text-secondary); line-height: 1.6; max-width: 660px; margin: 0; padding-left: 0; }
+
+/* ===== PDFs como tarjetas de descarga premium ===== */
+.portal-content .doc-list { gap: 9px; margin-top: 6px; }
+.portal-content .doc-link {
+  padding: 12px 15px; border: 1px solid var(--border); border-radius: 12px; background: #fff;
+  display: flex; align-items: center; gap: 13px; font-weight: 600; color: var(--navy); font-size: 13.5px;
+  transition: border-color .15s, box-shadow .15s, transform .12s;
+}
+.portal-content .doc-link svg { width: 19px; height: 22px; flex-shrink: 0; }
+.portal-content .doc-link::after {
+  content: 'PDF'; margin-left: auto; font-size: 10px; font-weight: 800; letter-spacing: .05em;
+  color: var(--blue); background: var(--blue-bg); padding: 4px 9px; border-radius: 7px;
+  transition: background .15s, color .15s;
+}
+.portal-content .doc-link:hover { border-color: var(--blue); box-shadow: 0 6px 18px rgba(0,72,255,0.13); transform: translateY(-2px); text-decoration: none; }
+.portal-content .doc-link:hover::after { background: var(--blue); color: #fff; }
+
 /* ============================================================
    RESPONSIVE
    ============================================================ */
