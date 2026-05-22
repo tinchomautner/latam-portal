@@ -901,6 +901,99 @@ input::placeholder, textarea::placeholder { color: var(--text-muted); }
 .portal-content .cards-grid { gap: 18px; }
 
 /* ============================================================
+   PORTAL UI v2 — refinamiento fuerte
+   ============================================================ */
+
+/* Ritmo y tipografía */
+.portal-content { max-width: 1010px; padding: 44px 48px 72px; }
+.portal-content .form-section > .section-title { font-size: 30px; margin-bottom: 12px; }
+.portal-content .form-section > .section-title::before { width: 5px; background: linear-gradient(180deg, #0048FF, #7AA0FF); }
+.portal-content .form-section > .section-lead { font-size: 15px; margin-bottom: 36px; max-width: 720px; }
+
+/* Inputs premium (portal + login) */
+.portal-content .field label,
+.login-main .field label { font-size: 12.5px; font-weight: 600; color: var(--navy); margin-bottom: 7px; }
+.portal-content input[type="text"], .portal-content input[type="email"],
+.portal-content input[type="password"], .portal-content input[type="number"],
+.portal-content select, .portal-content textarea,
+.login-main input[type="text"], .login-main input[type="email"],
+.login-main input[type="password"] {
+  padding: 13px 15px; border-radius: 11px; border: 1.5px solid rgba(12,46,78,0.10);
+  background: #fbfcfe; font-size: 14px;
+  transition: border-color .18s, box-shadow .18s, background .18s;
+}
+.portal-content input:focus, .portal-content select:focus, .portal-content textarea:focus,
+.login-main input:focus {
+  border-color: var(--blue); background: #fff; box-shadow: 0 0 0 4px rgba(0,72,255,0.12);
+}
+.portal-content .file-field { border-radius: 11px; border: 1.5px solid rgba(12,46,78,0.10); background: #fbfcfe; }
+.portal-content .file-trigger { background: #eef3fb; color: var(--blue); border-right-color: rgba(12,46,78,0.08); font-weight: 700; }
+.portal-content .file-trigger:hover { background: #e2ebfa; }
+
+/* Tarjetas de instrumento: detalle en el header + radios/sombras */
+.portal-content .icard { border-radius: 18px; box-shadow: 0 6px 22px rgba(12,46,78,0.06); }
+.portal-content .icard-head {
+  display: flex; align-items: center; gap: 11px; padding: 17px 22px; font-size: 13.5px;
+}
+.portal-content .icard-head::before {
+  content: ''; width: 9px; height: 9px; border-radius: 3px; flex-shrink: 0;
+  background: linear-gradient(135deg, #0048FF, #7AA0FF); box-shadow: 0 2px 6px rgba(0,72,255,0.35);
+}
+.portal-content .icard-body { padding: 22px; }
+.portal-content .card { border-radius: 18px; }
+
+/* Hero con textura de puntos */
+.portal-hero {
+  padding: 40px 44px; border-radius: 22px;
+  background-image:
+    radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+    linear-gradient(120deg, #051937 0%, #0a2f6e 52%, #0035d6 100%);
+  background-size: 22px 22px, auto;
+}
+.portal-hero h2 { font-size: 34px; }
+.portal-hero-badge { border-radius: 18px; padding: 20px 24px; }
+
+/* Dashboard: tarjetas con flecha al hover */
+.portal-content .svc-card { border-radius: 18px; padding: 24px; box-shadow: 0 6px 22px rgba(12,46,78,0.05); position: relative; }
+.portal-content .svc-card::after {
+  content: '→'; position: absolute; top: 24px; right: 22px; font-size: 18px; color: var(--blue);
+  opacity: 0; transform: translateX(-5px); transition: opacity .2s, transform .2s;
+}
+.portal-content .svc-card:hover::after { opacity: 1; transform: translateX(0); }
+.portal-content .svc-icon { width: 46px; height: 46px; border-radius: 13px; }
+.portal-content .svc-card h4 { font-size: 16px; }
+
+/* Botón primario con flecha sutil */
+.portal-shell .btn-gold, .login-main .btn-gold {
+  border-radius: 11px;
+  background: linear-gradient(135deg, #0048FF 0%, #2f6bff 100%);
+  box-shadow: 0 5px 16px rgba(0,72,255,0.26);
+}
+.portal-shell .btn-gold:hover, .login-main .btn-gold:hover {
+  background: linear-gradient(135deg, #0038cc 0%, #1f5bff 100%);
+  box-shadow: 0 8px 22px rgba(0,72,255,0.34); transform: translateY(-1px);
+}
+
+/* Tablas */
+.portal-content .perf-table td, .portal-content .lib-table td { padding: 13px 16px; }
+.portal-content .table-wrap { border-radius: 16px; }
+
+/* Scrollbars sutiles */
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-thumb { background: rgba(12,46,78,0.18); border-radius: 10px; border: 2px solid transparent; background-clip: padding-box; }
+*::-webkit-scrollbar-thumb:hover { background: rgba(12,46,78,0.3); background-clip: padding-box; }
+.sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.18); background-clip: padding-box; }
+
+/* Login modernizado */
+.login-aside { padding: 64px 60px 52px; }
+.login-aside h2 { font-size: 34px; margin-top: 44px; }
+.login-aside .brand-logo { height: 44px; }
+.login-card { max-width: 400px; }
+.login-card h3 { font-size: 27px; }
+.login-card .sub { font-size: 14px; line-height: 1.6; }
+.login-features li { font-size: 14px; }
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 @media (max-width: 860px) {

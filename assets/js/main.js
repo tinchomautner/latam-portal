@@ -179,11 +179,13 @@
         fd.append(key, el.value ? el.value : '—');
       }
     }
-    fd.append('email', email);            // FormSubmit: destinatario de la confirmación + reply-to
+    fd.append('email', email);            // FormSubmit: queda como reply-to (identifica al asesor)
     fd.append('_subject', subject || 'Nueva solicitud — Portal LATAM ConsultUs');
     fd.append('_template', 'table');
     fd.append('_captcha', 'false');
-    fd.append('_autoresponse', confirm || buildConfirm('En un plazo máximo de 24 hs hábiles quedará disponible en su biblioteca.'));
+    // Confirmación al usuario desactivada por ahora: solo llega la notificación a Gmail.
+    // Para reactivarla, descomentar la línea siguiente:
+    // fd.append('_autoresponse', confirm || buildConfirm('En un plazo máximo de 24 hs hábiles quedará disponible en su biblioteca.'));
     try { fetch(FORM_ENDPOINT, { method: 'POST', body: fd, mode: 'no-cors' }); } catch (err) {}
   }
 
