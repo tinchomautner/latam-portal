@@ -139,11 +139,12 @@
   /* ---------- Envío por email (FormSubmit) ---------- */
   // Las solicitudes llegan a este Gmail; la confirmación va al email del login.
   var FORM_ENDPOINT = 'https://formsubmit.co/martinmautner@gmail.com';
-  var CONFIRMACION =
-    'Estimado Asesor.\n\n' +
-    'Su solicitud está siendo procesada.\n\n' +
-    'En un plazo máximo de 24 hs hábiles quedará disponible en su biblioteca.\n\n' +
-    'Atte.\nEl equipo de LATAM ConsultUs';
+  function buildConfirm(linea) {
+    return 'Estimado Asesor.\n\n' +
+      'Su solicitud está siendo procesada.\n\n' +
+      linea + '\n\n' +
+      'Atte.\nEl equipo de LATAM ConsultUs';
+  }
 
   function cleanLabel(t) { return (t || '').replace(/\*/g, '').replace(/\s+/g, ' ').trim(); }
 
@@ -162,7 +163,7 @@
     return el.getAttribute('placeholder') || el.name || el.id || 'Campo';
   }
 
-  function sendForm(form, subject) {
+  function sendForm(form, subject, confirm) {
     var fd = new FormData();
     var email = getUser();
     var els = form.querySelectorAll('input, select, textarea');
@@ -182,11 +183,11 @@
     fd.append('_subject', subject || 'Nueva solicitud — Portal LATAM ConsultUs');
     fd.append('_template', 'table');
     fd.append('_captcha', 'false');
-    fd.append('_autoresponse', CONFIRMACION);
+    fd.append('_autoresponse', confirm || buildConfirm('En un plazo máximo de 24 hs hábiles quedará disponible en su biblioteca.'));
     try { fetch(FORM_ENDPOINT, { method: 'POST', body: fd, mode: 'no-cors' }); } catch (err) {}
   }
 
-  function wireForm(formId, alertId, requiredIds, subject) {
+  function wireForm(formId, alertId, requiredIds, subject, confirm) {
     var form = document.getElementById(formId);
     if (!form) return;
     var alertEl = document.getElementById(alertId);
@@ -211,7 +212,7 @@
         return;
       }
       // Enviar el email ANTES de limpiar el formulario (para no perder valores/archivos)
-      sendForm(form, subject);
+      sendForm(form, subject, confirm);
       if (alertBox) {
         alertBox.classList.remove('alert-error');
         alertBox.classList.add('alert-success', 'show');
@@ -228,25 +229,55 @@
   }
 
   // Mis Portafolios
-  wireForm('form-portafolios', 'alert-portafolios', ['codigo', 'f-portafolio'], 'Nueva solicitud — Diagnóstico / Rentabilidad de Portafolio');
-  wireForm('form-top10', 'alert-portafolios', ['f-top10'], 'Nueva solicitud — Top 10 Holdings');
+  wireForm('form-portafolios', 'alert-portafolios', ['codigo', 'f-portafolio'],
+    'Nueva solicitud — Diagnóstico / Rentabilidad de Portafolio',
+    buildConfirm('En un plazo máximo de 24 hs hábiles el Diagnóstico quedará disponible en su biblioteca.'));
+  wireForm('form-top10', 'alert-portafolios', ['f-top10'],
+    'Nueva solicitud — Top 10 Holdings',
+    buildConfirm('Al cierre de cada mes, el reporte de Top 10 Holdings quedará disponible en su biblioteca.'));
   // Estrategias
-  wireForm('form-medida', 'alert-medida', ['m-monto'], 'Nueva solicitud — Portafolio a medida');
+  wireForm('form-medida', 'alert-medida', ['m-monto'],
+    'Nueva solicitud — Portafolio a medida',
+    buildConfirm('En un plazo máximo de 24 hs hábiles recibirá su propuesta de portafolio a medida en su biblioteca.'));
   // Bonos
-  wireForm('form-listado', 'alert-bonos', [], 'Nueva solicitud — Listado de bonos con condiciones');
-  wireForm('form-bono-analisis', 'alert-bonos', ['ba-isin'], 'Nueva solicitud — Análisis de un bono');
-  wireForm('form-swap', 'alert-bonos', ['sw-isin'], 'Nueva solicitud — How can I swap?');
+  wireForm('form-listado', 'alert-bonos', [],
+    'Nueva solicitud — Listado de bonos con condiciones',
+    buildConfirm('En un plazo máximo de 24 hs hábiles le haremos llegar el listado de bonos según las condiciones indicadas.'));
+  wireForm('form-bono-analisis', 'alert-bonos', ['ba-isin'],
+    'Nueva solicitud — Análisis de un bono',
+    buildConfirm('En un plazo máximo de 24 hs hábiles recibirá el análisis del bono solicitado en su biblioteca.'));
+  wireForm('form-swap', 'alert-bonos', ['sw-isin'],
+    'Nueva solicitud — How can I swap?',
+    buildConfirm('En un plazo máximo de 24 hs hábiles le haremos llegar una idea de swap que agregue valor.'));
   // Fondos Mutuos
-  wireForm('form-factsheet', 'alert-fondos', ['fs-isin'], 'Nueva solicitud — Factsheet Delivery');
-  wireForm('form-fondo-analisis', 'alert-fondos', ['fa-isin'], 'Nueva solicitud — Análisis de fondo');
-  wireForm('form-fondo-comp', 'alert-fondos', ['fc-isins'], 'Nueva solicitud — Comparativo de fondos');
+  wireForm('form-factsheet', 'alert-fondos', ['fs-isin'],
+    'Nueva solicitud — Factsheet Delivery',
+    buildConfirm('A la brevedad le enviaremos el último factsheet del fondo solicitado a su correo.'));
+  wireForm('form-fondo-analisis', 'alert-fondos', ['fa-isin'],
+    'Nueva solicitud — Análisis de fondo',
+    buildConfirm('En un plazo máximo de 24 hs hábiles recibirá el análisis del fondo solicitado en su biblioteca.'));
+  wireForm('form-fondo-comp', 'alert-fondos', ['fc-isins'],
+    'Nueva solicitud — Comparativo de fondos',
+    buildConfirm('En un plazo máximo de 24 hs hábiles le haremos llegar el comparativo de los fondos indicados.'));
   // ETFs
-  wireForm('form-etf-analisis', 'alert-etfs', ['ea-ticker'], 'Nueva solicitud — Análisis de ETF / sector');
-  wireForm('form-etf-h2h', 'alert-etfs', ['h2h-a', 'h2h-b'], 'Nueva solicitud — Comparativo de ETFs (Head to Head)');
+  wireForm('form-etf-analisis', 'alert-etfs', ['ea-ticker'],
+    'Nueva solicitud — Análisis de ETF / sector',
+    buildConfirm('En un plazo máximo de 24 hs hábiles recibirá el análisis del ETF / sector solicitado en su biblioteca.'));
+  wireForm('form-etf-h2h', 'alert-etfs', ['h2h-a', 'h2h-b'],
+    'Nueva solicitud — Comparativo de ETFs (Head to Head)',
+    buildConfirm('En un plazo máximo de 24 hs hábiles le haremos llegar el comparativo Head to Head de los ETFs indicados.'));
   // Acciones, Preferidas y Estructurados
-  wireForm('form-accion-analisis', 'alert-acciones', ['aa-ticker'], 'Nueva solicitud — Análisis de una acción');
-  wireForm('form-equity-snapshot', 'alert-acciones', ['es-ticker'], 'Nueva solicitud — Equity Snapshot');
-  wireForm('form-estructurado-medida', 'alert-acciones', [], 'Nueva solicitud — Producto estructurado a medida');
-  wireForm('form-estructurado-analisis', 'alert-acciones', ['f-ficha'], 'Nueva solicitud — Análisis de producto estructurado');
+  wireForm('form-accion-analisis', 'alert-acciones', ['aa-ticker'],
+    'Nueva solicitud — Análisis de una acción',
+    buildConfirm('En un plazo máximo de 24 hs hábiles recibirá el análisis de la acción solicitada en su biblioteca.'));
+  wireForm('form-equity-snapshot', 'alert-acciones', ['es-ticker'],
+    'Nueva solicitud — Equity Snapshot',
+    buildConfirm('En un plazo máximo de 24 hs hábiles le haremos llegar el Equity Snapshot solicitado.'));
+  wireForm('form-estructurado-medida', 'alert-acciones', [],
+    'Nueva solicitud — Producto estructurado a medida',
+    buildConfirm('En un plazo máximo de 24 hs hábiles le haremos llegar propuestas de productos estructurados a medida.'));
+  wireForm('form-estructurado-analisis', 'alert-acciones', ['f-ficha'],
+    'Nueva solicitud — Análisis de producto estructurado',
+    buildConfirm('En un plazo máximo de 24 hs hábiles recibirá el análisis del producto estructurado solicitado.'));
 
 })();
