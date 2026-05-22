@@ -63,7 +63,7 @@
         localStorage.removeItem('lc_user');
         sessionStorage.removeItem('lc_user');
       } catch (err) {}
-      window.location.href = 'ingreso.html';
+      window.location.href = 'https://www.latamconsultus.com/';
     });
   }
 
