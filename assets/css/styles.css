@@ -994,6 +994,75 @@ input::placeholder, textarea::placeholder { color: var(--text-muted); }
 .login-features li { font-size: 14px; }
 
 /* ============================================================
+   PORTAL UI v3 — centro de mando (premium)
+   ============================================================ */
+
+/* Sidebar: íconos en tiles + tarjeta de usuario */
+.portal-shell .sidebar-link svg {
+  width: 30px; height: 30px; padding: 6px; border-radius: 9px;
+  background: rgba(255,255,255,0.06); box-sizing: border-box; opacity: 1;
+}
+.portal-shell .sidebar-link.active svg { background: rgba(0,72,255,0.25); }
+.portal-shell .sidebar-user {
+  display: flex; align-items: center; gap: 11px; padding: 12px;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 14px; margin-bottom: 12px;
+}
+.portal-shell .sidebar-user .av {
+  width: 38px; height: 38px; border-radius: 11px; flex-shrink: 0;
+  background: linear-gradient(135deg, #0048FF, #6B93FF); color: #fff;
+  display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px;
+}
+.portal-shell .sidebar-user .nm { color: #fff; font-size: 13px; font-weight: 600; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 138px; }
+.portal-shell .sidebar-user .rl { color: rgba(255,255,255,0.45); font-size: 11px; }
+
+/* Topbar: campana + chip de usuario */
+.tb-bell {
+  position: relative; width: 38px; height: 38px; border-radius: 11px;
+  background: var(--off-white); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background .15s;
+}
+.tb-bell:hover { background: #e8eef7; }
+.tb-bell svg { width: 18px; height: 18px; fill: var(--navy); }
+.tb-bell::after { content: ''; position: absolute; top: 9px; right: 10px; width: 7px; height: 7px; border-radius: 50%; background: var(--blue); border: 2px solid #fff; }
+.user-chip { display: flex; align-items: center; gap: 10px; padding: 5px 6px 5px 15px; border: 1px solid var(--border); border-radius: 30px; background: #fff; }
+.user-chip .nm { font-size: 13px; font-weight: 600; color: var(--navy); }
+
+/* KPIs */
+.kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: -10px 0 32px; }
+.kpi { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 18px; display: flex; align-items: center; gap: 14px; box-shadow: 0 6px 22px rgba(12,46,78,.05); transition: transform .2s, box-shadow .2s; }
+.kpi:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(12,46,78,.1); }
+.kpi-ic { width: 44px; height: 44px; border-radius: 13px; background: linear-gradient(135deg, #0C2E4E, #1a3f6b); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.kpi-ic svg { width: 22px; height: 22px; fill: var(--gold-light); }
+.kpi-num { font-family: 'Montserrat', sans-serif; font-size: 23px; font-weight: 800; color: var(--navy); line-height: 1; }
+.kpi-lbl { font-size: 12px; color: var(--text-muted); margin-top: 5px; }
+
+/* Encabezados de dashboard */
+.dash-h { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: .06em; margin: 4px 0 16px; display: flex; align-items: center; gap: 10px; }
+.dash-h::before { content: ''; width: 18px; height: 3px; border-radius: 3px; background: linear-gradient(90deg, #0048FF, #6B93FF); }
+
+/* Motivo gráfico del hero */
+.portal-hero { position: relative; overflow: hidden; }
+.hero-motif { position: absolute; right: 0; bottom: 0; width: 48%; max-width: 400px; opacity: .55; pointer-events: none; }
+
+/* Card de performance en el dashboard */
+.dash-perf { background: #fff; border: 1px solid var(--border); border-radius: 18px; box-shadow: 0 6px 22px rgba(12,46,78,.05); overflow: hidden; }
+.dash-perf .dp-head { display: flex; align-items: center; justify-content: space-between; padding: 18px 22px; border-bottom: 1px solid var(--border); }
+.dash-perf .dp-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px; color: var(--navy); }
+.dash-perf .dp-date { font-size: 12px; color: var(--text-muted); }
+.dp-row { display: flex; align-items: center; justify-content: space-between; padding: 13px 22px; border-bottom: 1px solid var(--border); transition: background .15s; }
+.dp-row:last-child { border-bottom: none; }
+.dp-row:hover { background: var(--off-white); }
+.dp-name { font-size: 14px; color: var(--text-primary); font-weight: 500; }
+.dp-vals { display: flex; gap: 8px; align-items: center; }
+.dp-chip { font-size: 12px; font-weight: 700; padding: 3px 11px; border-radius: 20px; min-width: 56px; text-align: center; }
+.dp-chip.pos { background: var(--green-bg); color: var(--green); }
+.dp-chip.ytd { background: var(--blue-bg); color: var(--blue); }
+.dp-chip-lbl { font-size: 10px; color: var(--text-muted); font-weight: 600; }
+
+.dash-2col { display: grid; grid-template-columns: 1.3fr 1fr; gap: 20px; align-items: start; }
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 @media (max-width: 860px) {
@@ -1012,6 +1081,9 @@ input::placeholder, textarea::placeholder { color: var(--text-muted); }
   .portal-hero h2 { font-size: 26px; }
   .portal-hero-badge { align-self: stretch; display: flex; align-items: center; gap: 12px; }
   .portal-hero-badge .lbl { margin-top: 0; text-align: left; }
+  .kpi-row { grid-template-columns: 1fr 1fr; }
+  .dash-2col { grid-template-columns: 1fr; }
+  .hero-motif { display: none; }
   .two-col { grid-template-columns: 1fr; }
   .feature { grid-template-columns: 1fr; gap: 36px; }
   .contact-grid { grid-template-columns: 1fr; gap: 36px; }

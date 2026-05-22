@@ -50,6 +50,13 @@
     </div>
 
     <div class="sidebar-foot">
+      <div class="sidebar-user">
+        <div class="av" id="sideAvatar">C</div>
+        <div style="min-width:0;">
+          <div class="nm" id="sideName">Cliente</div>
+          <div class="rl">Asesor financiero</div>
+        </div>
+      </div>
       <button class="btn btn-outline btn-block" id="logoutBtn">Cerrar sesión</button>
     </div>
   </aside>
@@ -62,20 +69,29 @@
         <span class="crumb">Portal / <strong id="crumbCurrent" style="color:var(--text-primary)">Inicio</strong></span>
       </div>
       <div class="portal-user">
-        <span style="font-size:13px; color:var(--text-secondary)" id="userName">Cliente</span>
-        <div class="avatar" id="userAvatar">C</div>
+        <div class="tb-bell" title="Notificaciones"><svg viewBox="0 0 24 24"><path d="M12 2a6 6 0 0 0-6 6c0 4-1.5 5.5-2 6.5h16c-.5-1-2-2.5-2-6.5a6 6 0 0 0-6-6zm0 20a2.5 2.5 0 0 0 2.45-2h-4.9A2.5 2.5 0 0 0 12 22z"/></svg></div>
+        <div class="user-chip">
+          <span class="nm" id="userName">Cliente</span>
+          <div class="avatar" id="userAvatar">C</div>
+        </div>
       </div>
     </div>
 
     <div class="portal-content">
 
-      <!-- ============ INICIO ============ -->
+      <!-- ============ INICIO (centro de mando) ============ -->
       <section class="form-section active" id="sec-inicio">
         <div class="portal-hero">
+          <svg class="hero-motif" viewBox="0 0 400 200" fill="none" preserveAspectRatio="none">
+            <path d="M0 165 L57 150 L114 158 L171 120 L228 132 L285 82 L342 95 L400 40 L400 200 L0 200 Z" fill="rgba(0,72,255,0.18)"/>
+            <polyline points="0,165 57,150 114,158 171,120 228,132 285,82 342,95 400,40" stroke="#7AA0FF" stroke-width="3" fill="none"/>
+            <circle cx="285" cy="82" r="5" fill="#fff"/>
+            <circle cx="400" cy="40" r="5" fill="#fff"/>
+          </svg>
           <div class="portal-hero-text">
-            <div class="section-eyebrow">Portal de clientes</div>
+            <div class="section-eyebrow">Centro de mando · Portal de clientes</div>
             <h2>Bienvenido<span id="heroUser"></span></h2>
-            <p>Acceda a sus portafolios, estrategias e instrumentos de inversión. Las solicitudes de reportes quedan disponibles en su biblioteca en un plazo máximo de 24 horas hábiles.</p>
+            <p>Su mesa de análisis: portafolios, estrategias e instrumentos de inversión en un solo lugar. Cada solicitud queda en su biblioteca en un plazo máximo de 24 horas hábiles.</p>
           </div>
           <div class="portal-hero-badge">
             <span class="num">24h</span>
@@ -83,6 +99,26 @@
           </div>
         </div>
 
+        <div class="kpi-row">
+          <div class="kpi">
+            <div class="kpi-ic"><svg viewBox="0 0 24 24"><path d="M4 4h7v7H4zm9 0h7v7h-7zM4 13h7v7H4zm9 0h7v7h-7z"/></svg></div>
+            <div><div class="kpi-num">2.760</div><div class="kpi-lbl">Productos cubiertos</div></div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-ic"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 10V6h-2v7l5 3 1-1.7-4-2.3z"/></svg></div>
+            <div><div class="kpi-num">+6.500</div><div class="kpi-lbl">Horas de análisis / año</div></div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-ic"><svg viewBox="0 0 24 24"><path d="M3 13h4v8H3zm7-9h4v17h-4zm7 5h4v12h-4z"/></svg></div>
+            <div><div class="kpi-num">6</div><div class="kpi-lbl">Estrategias modelo</div></div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-ic"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 10V7h-2v6h5v-2z"/></svg></div>
+            <div><div class="kpi-num">24h</div><div class="kpi-lbl">Plazo de entrega</div></div>
+          </div>
+        </div>
+
+        <div class="dash-h">Accesos rápidos</div>
         <div class="cards-grid">
           <div class="svc-card" data-go="portafolios">
             <div class="svc-icon"><svg viewBox="0 0 20 20"><path d="M3 3h14v3H3zm0 5h14v3H3zm0 5h9v3H3z"/></svg></div>
@@ -113,6 +149,29 @@
             <div class="svc-icon"><svg viewBox="0 0 20 20"><path d="M3 16h14v2H3zm2-3h2v2H5zm4-4h2v6H9zm4 2h2v4h-2z"/></svg></div>
             <h4>Acciones, Pref. y Estruct.</h4>
             <p>Equity Targets, snapshots, análisis y productos estructurados.</p>
+          </div>
+        </div>
+
+        <div class="dash-h" style="margin-top:36px;">Performance de estrategias</div>
+        <div class="dash-2col">
+          <div class="dash-perf">
+            <div class="dp-head">
+              <span class="dp-title">Estrategias modelo LATAM</span>
+              <span class="dp-date">Al 30-04-2026 · <span class="dp-chip-lbl">MTD</span> / <span class="dp-chip-lbl">YTD</span></span>
+            </div>
+            <div class="dp-row"><span class="dp-name">Conservador LATAM</span><span class="dp-vals"><span class="dp-chip pos">+2.54</span><span class="dp-chip ytd">+1.08</span></span></div>
+            <div class="dp-row"><span class="dp-name">Moderada LATAM</span><span class="dp-vals"><span class="dp-chip pos">+4.28</span><span class="dp-chip ytd">+1.00</span></span></div>
+            <div class="dp-row"><span class="dp-name">Dinámico LATAM</span><span class="dp-vals"><span class="dp-chip pos">+8.37</span><span class="dp-chip ytd">+2.73</span></span></div>
+            <div class="dp-row"><span class="dp-name">Distributiva LATAM</span><span class="dp-vals"><span class="dp-chip pos">+2.39</span><span class="dp-chip ytd">+1.66</span></span></div>
+            <div class="dp-row"><span class="dp-name">Estrategia 1MM Plus</span><span class="dp-vals"><span class="dp-chip pos">+3.88</span><span class="dp-chip ytd">+0.95</span></span></div>
+            <div class="dp-row"><span class="dp-name">ETF Moderate Portfolio</span><span class="dp-vals"><span class="dp-chip pos">+5.35</span><span class="dp-chip ytd">+4.45</span></span></div>
+          </div>
+          <div class="dash-perf">
+            <div class="dp-head"><span class="dp-title">¿Necesita algo a medida?</span></div>
+            <div style="padding:22px;">
+              <p style="font-size:14px;color:var(--text-secondary);line-height:1.7;margin-bottom:18px;">Si las estrategias modelo no se ajustan al perfil de su cliente, solicite una <strong>propuesta de portafolio a medida</strong> y la preparamos según objetivos, horizonte y perfil de riesgo.</p>
+              <button class="btn btn-gold" data-go="estrategias" style="width:100%;">Solicitar portafolio a medida</button>
+            </div>
           </div>
         </div>
       </section>

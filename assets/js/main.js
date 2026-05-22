@@ -57,10 +57,15 @@
     var u = getUser();
     if (u) {
       var display = u.indexOf('@') > -1 ? u.split('@')[0] : u;
+      var inicial = display.charAt(0).toUpperCase();
       userNameEl.textContent = display;
-      if (userAvatarEl) userAvatarEl.textContent = display.charAt(0).toUpperCase();
+      if (userAvatarEl) userAvatarEl.textContent = inicial;
       var heroUser = document.getElementById('heroUser');
       if (heroUser) heroUser.textContent = ', ' + display;
+      var sideName = document.getElementById('sideName');
+      if (sideName) sideName.textContent = display;
+      var sideAvatar = document.getElementById('sideAvatar');
+      if (sideAvatar) sideAvatar.textContent = inicial;
     }
   }
 
