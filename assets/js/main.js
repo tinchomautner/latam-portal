@@ -166,6 +166,10 @@
   function sendForm(form, subject, confirm) {
     var fd = new FormData();
     var email = getUser();
+    // Contexto al principio del mail
+    var tipo = (subject || '').replace(/^Nueva solicitud\s*[—-]\s*/, '');
+    if (tipo) fd.append('Tipo de solicitud', tipo);
+    fd.append('Asesor', email || '—');
     var els = form.querySelectorAll('input, select, textarea');
     for (var i = 0; i < els.length; i++) {
       var el = els[i];
