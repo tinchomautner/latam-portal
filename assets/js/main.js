@@ -136,14 +136,20 @@
     });
   }
 
-  /* ---------- Envío por email (FormSubmit) ---------- */
-  // Las solicitudes llegan a este Gmail; la confirmación va al email del login.
-  var FORM_ENDPOINT = 'https://formsubmit.co/martinmautner@gmail.com';
+  /* ---------- Envío por email (EmailJS) ---------- */
+  // ►► Pegá acá los 3 datos de tu cuenta de EmailJS:
+  var EMAILJS_PUBLIC_KEY  = 'TU_PUBLIC_KEY';
+  var EMAILJS_SERVICE_ID  = 'TU_SERVICE_ID';
+  var EMAILJS_TEMPLATE_ID = 'TU_TEMPLATE_ID';
+
+  if (window.emailjs && EMAILJS_PUBLIC_KEY.indexOf('TU_') !== 0) {
+    try { emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); } catch (err) {}
+  }
+
+  // Texto de confirmación al usuario (reservado; hoy no se envía, solo notificamos a Gmail).
   function buildConfirm(linea) {
-    return 'Estimado Asesor.\n\n' +
-      'Su solicitud está siendo procesada.\n\n' +
-      linea + '\n\n' +
-      'Atte.\nEl equipo de LATAM ConsultUs';
+    return 'Estimado Asesor.\n\nSu solicitud está siendo procesada.\n\n' + linea +
+      '\n\nAtte.\nEl equipo de LATAM ConsultUs';
   }
 
   function cleanLabel(t) { return (t || '').replace(/\*/g, '').replace(/\s+/g, ' ').trim(); }
@@ -163,34 +169,54 @@
     return el.getAttribute('placeholder') || el.name || el.id || 'Campo';
   }
 
-  function sendForm(form, subject, confirm) {
-    var fd = new FormData();
-    var email = getUser();
-    // Contexto al principio del mail
-    var tipo = (subject || '').replace(/^Nueva solicitud\s*[—-]\s*/, '');
-    if (tipo) fd.append('Tipo de solicitud', tipo);
-    fd.append('Asesor', email || '—');
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+  // Arma el cuerpo HTML del email (saludo, datos, firma) como el ejemplo.
+  function buildMessage(form, tipo, email) {
+    var L = [];
+    L.push('Estimado Asesor.');
+    L.push('');
+    L.push('Se ha ingresado una nueva solicitud a través del Portal de Clientes.');
+    L.push('');
+    L.push('En un plazo máximo de 24 hs hábiles será procesada y el reporte quedará disponible en su biblioteca.');
+    L.push('');
+    L.push('---------------------------------------------------------');
+    L.push('');
+    if (tipo) L.push('<strong>Tipo de solicitud:</strong> ' + esc(tipo));
+    L.push('<strong>Asesor:</strong> ' + esc(email || '—'));
+    L.push('');
     var els = form.querySelectorAll('input, select, textarea');
     for (var i = 0; i < els.length; i++) {
       var el = els[i];
       if (el.type === 'submit' || el.type === 'button') continue;
       var key = fieldLabel(el, form);
-      if (el.type === 'file') {
-        if (el.files && el.files.length) fd.append(key, el.files[0], el.files[0].name);
-      } else if (el.type === 'checkbox') {
-        fd.append(key, el.checked ? 'Sí' : 'No');
-      } else {
-        fd.append(key, el.value ? el.value : '—');
-      }
+      var val;
+      if (el.type === 'file') { val = (el.files && el.files.length) ? el.files[0].name : '—'; }
+      else if (el.type === 'checkbox') { val = el.checked ? 'Sí' : 'No'; }
+      else { val = el.value ? el.value : '—'; }
+      L.push('<strong>' + esc(key) + ':</strong> ' + esc(val));
     }
-    fd.append('email', email);            // FormSubmit: queda como reply-to (identifica al asesor)
-    fd.append('_subject', subject || 'Nueva solicitud — Portal LATAM ConsultUs');
-    fd.append('_template', 'table');
-    fd.append('_captcha', 'false');
-    // Confirmación al usuario desactivada por ahora: solo llega la notificación a Gmail.
-    // Para reactivarla, descomentar la línea siguiente:
-    // fd.append('_autoresponse', confirm || buildConfirm('En un plazo máximo de 24 hs hábiles quedará disponible en su biblioteca.'));
-    try { fetch(FORM_ENDPOINT, { method: 'POST', body: fd, mode: 'no-cors' }); } catch (err) {}
+    L.push('');
+    L.push('---------------------------------------------------------');
+    L.push('');
+    L.push('Atte.');
+    L.push('El equipo de LATAM ConsultUs');
+    return L.join('<br>');
+  }
+
+  function sendForm(form, subject, confirm) {
+    var email = getUser();
+    var tipo = (subject || '').replace(/^Nueva solicitud\s*[—-]\s*/, '');
+    var params = {
+      subject: subject || 'Nueva solicitud — Portal LATAM ConsultUs',
+      reply_to: email || '',
+      message: buildMessage(form, tipo, email)
+    };
+    if (!window.emailjs || EMAILJS_SERVICE_ID.indexOf('TU_') === 0) {
+      // Aún sin configurar EmailJS: no se envía (la UI igual muestra éxito).
+      return;
+    }
+    try { emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params); } catch (err) {}
   }
 
   function wireForm(formId, alertId, requiredIds, subject, confirm) {
