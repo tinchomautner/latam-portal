@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal de Clientes — LATAM ConsultUs</title>
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<div class="portal-shell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <a href="https://www.latamconsultus.com/" class="logo on-dark">
+      <img src="assets/img/logo-latam-blanco.png" alt="LATAM ConsultUs — El valor de ser independiente" class="brand-logo">
+    </a>
+
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Principal</div>
+      <div class="sidebar-link active" data-section="inicio">
+        <svg viewBox="0 0 20 20"><path d="M10 2L2 8v10h6v-6h4v6h6V8z"/></svg> Inicio
+      </div>
+    </div>
+
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Portafolios</div>
+      <div class="sidebar-link" data-section="portafolios">
+        <svg viewBox="0 0 20 20"><path d="M3 3h14v3H3zm0 5h14v3H3zm0 5h9v3H3z"/></svg> Mis Portafolios
+      </div>
+      <div class="sidebar-link" data-section="estrategias">
+        <svg viewBox="0 0 20 20"><path d="M3 14l4-5 3 3 5-7 2 2v6z"/></svg> Estrategias de Inversión
+      </div>
+    </div>
+
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Instrumentos de Inversión</div>
+      <div class="sidebar-link" data-section="bonos">
+        <svg viewBox="0 0 20 20"><path d="M4 4h12v2H4zm0 5h12v2H4zm0 5h8v2H4z"/></svg> Bonos
+      </div>
+      <div class="sidebar-link" data-section="fondos">
+        <svg viewBox="0 0 20 20"><path d="M3 3h6v6H3zm8 0h6v6h-6zM3 11h6v6H3zm8 0h6v6h-6z"/></svg> Fondos Mutuos
+      </div>
+      <div class="sidebar-link" data-section="etfs">
+        <svg viewBox="0 0 20 20"><path d="M3 14l4-5 3 3 5-7 2 2v6z"/></svg> ETFs
+      </div>
+      <div class="sidebar-link" data-section="acciones">
+        <svg viewBox="0 0 20 20"><path d="M3 16h14v2H3zm2-3h2v2H5zm4-4h2v6H9zm4 2h2v4h-2zm-8-6 5-3 4 2 4-3v3l-4 3-4-2-5 3z"/></svg> Acciones, Pref. y Estruct.
+      </div>
+    </div>
+
+    <div class="sidebar-foot">
+      <button class="btn btn-outline btn-block" id="logoutBtn">Cerrar sesión</button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="portal-main">
+    <div class="portal-topbar">
+      <div style="display:flex; align-items:center; gap:14px;">
+        <button class="nav-toggle" id="sidebarToggle" style="display:none"><span></span><span></span><span></span></button>
+        <span class="crumb">Portal / <strong id="crumbCurrent" style="color:var(--text-primary)">Inicio</strong></span>
+      </div>
+      <div class="portal-user">
+        <span style="font-size:13px; color:var(--text-secondary)" id="userName">Cliente</span>
+        <div class="avatar" id="userAvatar">C</div>
+      </div>
+    </div>
+
+    <div class="portal-content">
+
+      <!-- ============ INICIO ============ -->
+      <section class="form-section active" id="sec-inicio">
+        <div class="portal-hero">
+          <div class="portal-hero-text">
+            <div class="section-eyebrow">Portal de clientes</div>
+            <h2>Bienvenido<span id="heroUser"></span></h2>
+            <p>Acceda a sus portafolios, estrategias e instrumentos de inversión. Las solicitudes de reportes quedan disponibles en su biblioteca en un plazo máximo de 24 horas hábiles.</p>
+          </div>
+          <div class="portal-hero-badge">
+            <span class="num">24h</span>
+            <span class="lbl">plazo máximo<br>de entrega</span>
+          </div>
+        </div>
+
+        <div class="cards-grid">
+          <div class="svc-card" data-go="portafolios">
+            <div class="svc-icon"><svg viewBox="0 0 20 20"><path d="M3 3h14v3H3zm0 5h14v3H3zm0 5h9v3H3z"/></svg></div>
+            <h4>Mis Portafolios</h4>
+            <p>Diagnóstico de portafolios, reporte de rentabilidad y Top 10 Holdings.</p>
+          </div>
+          <div class="svc-card" data-go="estrategias">
+            <div class="svc-icon"><svg viewBox="0 0 20 20"><path d="M3 14l4-5 3 3 5-7 2 2v6z"/></svg></div>
+            <h4>Estrategias de Inversión</h4>
+            <p>Estrategias modelo, performance mensual y propuesta a medida.</p>
+          </div>
+          <div class="svc-card" data-go="bonos">
+            <div class="svc-icon"><svg viewBox="0 0 20 20"><path d="M4 4h12v2H4zm0 5h12v2H4zm0 5h8v2H4z"/></svg></div>
+            <h4>Bonos</h4>
+            <p>Bond Selection List, listado a medida, análisis y swaps.</p>
+          </div>
+          <div class="svc-card" data-go="fondos">
+            <div class="svc-icon"><svg viewBox="0 0 20 20"><path d="M3 3h6v6H3zm8 0h6v6h-6zM3 11h6v6H3zm8 0h6v6h-6z"/></svg></div>
+            <h4>Fondos Mutuos</h4>
+            <p>Mejores en su clase, factsheet delivery y comparativos.</p>
+          </div>
+          <div class="svc-card" data-go="etfs">
+            <div class="svc-icon"><svg viewBox="0 0 20 20"><path d="M3 14l4-5 3 3 5-7 2 2v6z"/></svg></div>
+            <h4>ETFs</h4>
+            <p>Estrategia, recomendados US y UCITS, análisis y comparativos.</p>
+          </div>
+          <div class="svc-card" data-go="acciones">
+            <div class="svc-icon"><svg viewBox="0 0 20 20"><path d="M3 16h14v2H3zm2-3h2v2H5zm4-4h2v6H9zm4 2h2v4h-2z"/></svg></div>
+            <h4>Acciones, Pref. y Estruct.</h4>
+            <p>Equity Targets, snapshots, análisis y productos estructurados.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ MIS PORTAFOLIOS ============ -->
+      <section class="form-section" id="sec-portafolios">
+        <div class="section-eyebrow">Mis Portafolios</div>
+        <h2 class="section-title">Diagnóstico de Portafolios / Reporte de Rentabilidad de Cuenta</h2>
+
+        <div class="stepper"><div class="dot">1</div><div class="bar"></div></div>
+
+        <div class="alert alert-success" id="alert-portafolios">Solicitud ingresada correctamente. El reporte quedará disponible en su biblioteca en un plazo máximo de 24 horas hábiles.</div>
+
+        <div class="form-grid">
+          <div class="form-instructions">
+            <p class="lead">1) DIAGNÓSTICO y sugerencias: utilice el siguiente formulario para ingresar sus portafolios en la Biblioteca.</p>
+            <p>Es su responsabilidad ingresar el perfil correspondiente a cada cliente. Seleccione el perfil en el campo correspondiente.</p>
+            <p>Si Usted no dispone de un Perfil de Riesgo haga clic aquí. Tenga a bien completar el formulario, generar el PDF y adjuntarlo a la solicitud.</p>
+            <p>Adjunte el Portafolio de su cliente en formato XLS o XLSX (Excel).</p>
+            <p class="lead">2) Para obtener el informe de RENTABILIDAD, ingrese una planilla excel con:</p>
+            <p><strong>Hoja 1:</strong> valor diario del portafolio<br>
+               <strong>Hoja 2:</strong> detalle de los movimientos de la cuenta cash (aportes, retiros, dividendos, intereses, etc)<br>
+               <strong>Hoja 3:</strong> composición del portafolio.</p>
+            <p>La cuenta deberá tener una antigüedad mínima de 1 año. Los reportes quedarán disponibles en su Biblioteca en un plazo máximo de 24 horas hábiles.</p>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Solicitud de reporte</div>
+            <div class="card-sub">Diagnóstico y rentabilidad de portafolio</div>
+            <form id="form-portafolios" novalidate>
+              <div class="field-row">
+                <div class="field">
+                  <label for="codigo">Código cliente <span class="req">*</span></label>
+                  <input type="text" id="codigo" placeholder="Número de 4 cifras" inputmode="numeric" maxlength="4">
+                </div>
+                <div class="field">
+                  <label for="perfil">Perfil de riesgo <span class="req">*</span></label>
+                  <select id="perfil">
+                    <option>Conservador</option><option>Moderado</option><option>Balanceado</option>
+                    <option>Dinámico</option><option>Distributivo</option><option>Agresivo</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field">
+                <label>Archivo Perfil de riesgo</label>
+                <div class="file-field"><label class="file-trigger" for="f-perfil">Seleccionar archivo</label><span class="file-name" data-for="f-perfil">Ningún archivo seleccionado</span><input type="file" id="f-perfil" accept=".pdf"></div>
+              </div>
+              <div class="field">
+                <label>Archivo Portafolio del cliente <span class="req">*</span></label>
+                <div class="file-field"><label class="file-trigger" for="f-portafolio">Seleccionar archivo</label><span class="file-name" data-for="f-portafolio">Ningún archivo seleccionado</span><input type="file" id="f-portafolio" accept=".xls,.xlsx"></div>
+                <div class="hint">Formato XLS o XLSX (Excel).</div>
+              </div>
+              <div class="field">
+                <label>Archivo Rentabilidad de cuenta</label>
+                <div class="file-field"><label class="file-trigger" for="f-rentabilidad">Seleccionar archivo</label><span class="file-name" data-for="f-rentabilidad">Ningún archivo seleccionado</span><input type="file" id="f-rentabilidad" accept=".xls,.xlsx"></div>
+              </div>
+              <div class="field">
+                <label for="comentarios">Comentarios</label>
+                <textarea id="comentarios" placeholder="Indicaciones adicionales para el equipo de análisis…"></textarea>
+              </div>
+              <div class="banner-warn">Solo queda una solicitud de reporte asociada a su plan en el mes en curso.</div>
+              <div class="form-actions"><button type="submit" class="btn btn-gold btn-block btn-lg">Ingresar</button></div>
+            </form>
+          </div>
+        </div>
+
+        <div style="margin-top:48px;">
+          <h3 style="font-size:22px; margin-bottom:8px;">Top 10 Holdings</h3>
+          <div class="igrid">
+            <div class="icard">
+              <div class="icard-head">Top 10 Holdings</div>
+              <div class="icard-body">
+                <p>Un reporte con la evolución de las 10 mayores tenencias de su cartera. Ingrese el formulario con ISIN y nombre del activo. Al cierre de cada mes el reporte quedará disponible en su biblioteca.</p>
+                <form id="form-top10" novalidate>
+                  <div class="field">
+                    <label>Formulario de holdings <span class="req">*</span></label>
+                    <div class="file-field"><label class="file-trigger" for="f-top10">Seleccionar archivo</label><span class="file-name" data-for="f-top10">Ningún archivo seleccionado</span><input type="file" id="f-top10" accept=".xls,.xlsx,.csv"></div>
+                  </div>
+                  <button type="submit" class="btn btn-gold">Ingresar</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:48px;">
+          <h3 style="font-size:22px; margin-bottom:8px;">Mis Portafolios</h3>
+          <p class="section-lead" style="margin-bottom:16px;">Esta biblioteca contiene todos los reportes "Diagnóstico de Portafolio" solicitados por Usted. Utilice el ícono de histórico para acceder a sus reportes y mantener actualizados sus archivos.</p>
+          <div class="table-wrap">
+            <table class="lib-table">
+              <thead><tr><th>#</th><th>Código</th><th>Ingreso</th><th>Perfil de riesgo</th><th>Perfil</th><th>Portfolio</th><th>Rentabilidad</th><th>Diagnóstico</th><th>Estado</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>1111</td><td>27/03/2026</td><td>Dinámico</td><td><span class="mini">Ver perfil</span></td><td><span class="mini">Ver portfolio</span></td><td>—</td><td>Procesando…</td><td><span class="pill">Pendiente</span></td></tr>
+                <tr><td>2</td><td>2345</td><td>07/12/2022</td><td>Conservador</td><td><span class="mini">Ver perfil</span></td><td><span class="mini">Ver portfolio</span></td><td>—</td><td>Procesando…</td><td><span class="pill">Pendiente</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ ESTRATEGIAS DE INVERSIÓN ============ -->
+      <section class="form-section" id="sec-estrategias">
+        <div class="section-eyebrow">Estrategias de Inversión</div>
+        <h2 class="section-title">Estrategias de Inversión</h2>
+        <p class="section-lead">Nuestras estrategias están diseñadas pensando en las necesidades y objetivos de un cliente latinoamericano; combinando fondos mutuos de renta fija, variable y alternativos en diferentes porcentajes. Si estos portafolios no se adaptan a su cliente, puede solicitar una propuesta de inversión a medida.</p>
+
+        <div class="igrid">
+          <div class="icard">
+            <div class="icard-head">Estrategias modelo</div>
+            <div class="icard-body">
+              <div class="doc-list">
+                <a class="doc-link" href="assets/pdf/estrategia_conservadora.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/></svg> Estrategia Conservadora</a>
+                <a class="doc-link" href="assets/pdf/estrategia_moderada.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/></svg> Estrategia Moderada</a>
+                <a class="doc-link" href="assets/pdf/estrategia_dinamica.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/></svg> Estrategia Dinámica</a>
+                <a class="doc-link" href="assets/pdf/estrategia_income.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/></svg> Estrategia Income</a>
+                <a class="doc-link" href="assets/pdf/portfolio_esg.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/></svg> Portfolio ESG</a>
+                <a class="doc-link" href="assets/pdf/estrategia_etfs.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/></svg> Estrategia ETF's</a>
+                <a class="doc-link" href="assets/pdf/informe_de_gestion.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/></svg> Informe de Gestión</a>
+              </div>
+            </div>
+          </div>
+          <div class="icard">
+            <div class="icard-head">Performance · 30-04-2026</div>
+            <div class="icard-body" style="padding:0;">
+              <table class="perf-table">
+                <thead><tr><th>Estrategia</th><th>MTD</th><th>YTD</th></tr></thead>
+                <tbody>
+                  <tr><td>Conservador LATAM</td><td class="pos">2.54</td><td class="pos">1.08</td></tr>
+                  <tr><td>Moderada LATAM</td><td class="pos">4.28</td><td class="pos">1.00</td></tr>
+                  <tr><td>Dinámico LATAM</td><td class="pos">8.37</td><td class="pos">2.73</td></tr>
+                  <tr><td>Distributiva LATAM</td><td class="pos">2.39</td><td class="pos">1.66</td></tr>
+                  <tr><td>Estrategia 1MM Plus</td><td class="pos">3.88</td><td class="pos">0.95</td></tr>
+                  <tr><td>ETF Moderate Portfolio</td><td class="pos">5.35</td><td class="pos">4.45</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:48px;">
+          <h3 style="font-size:22px; margin-bottom:8px;">Portafolio a medida</h3>
+          <p class="section-lead" style="margin-bottom:16px;">Complete el formulario para recibir un portafolio a medida. Plazo máximo de entrega 24 horas. El campo Perfil de Riesgo es obligatorio.</p>
+          <div class="alert alert-success" id="alert-medida">Solicitud enviada. Recibirá su propuesta de portafolio en su biblioteca.</div>
+          <div class="card" style="max-width:680px;">
+            <form id="form-medida" novalidate>
+              <div class="field-row">
+                <div class="field"><label for="m-monto">Monto en USD <span class="req">*</span></label><input type="number" id="m-monto" placeholder="ej. 250000" min="0"></div>
+                <div class="field"><label for="m-perfil">Perfil de riesgo <span class="req">*</span></label><select id="m-perfil"><option>Conservador</option><option>Moderado</option><option>Balanceado</option><option>Dinámico</option><option>Distributivo</option><option>Agresivo</option></select></div>
+              </div>
+              <div class="field-row">
+                <div class="field"><label for="m-retorno">Retorno esperado %</label><input type="number" id="m-retorno" placeholder="ej. 6" step="0.1"></div>
+                <div class="field"><label for="m-horizonte">Horizonte temporal</label><select id="m-horizonte"><option>Corto hasta 3 años</option><option>Mediano 3 a 7 años</option><option>Largo más de 7 años</option></select></div>
+              </div>
+              <div class="field"><label for="m-pais">País de residencia</label><select id="m-pais"><option>Argentina</option><option>Uruguay</option><option>Chile</option><option>Brasil</option><option>Paraguay</option><option>Bolivia</option><option>Perú</option><option>Otro</option></select></div>
+              <div class="field"><label for="m-comentarios">Comentarios</label><textarea id="m-comentarios" placeholder="Objetivos, restricciones, preferencias…"></textarea></div>
+              <div class="form-actions"><button type="submit" class="btn btn-gold btn-block btn-lg">Solicitar Portafolio</button></div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ BONOS ============ -->
+      <section class="form-section" id="sec-bonos">
+        <div class="section-eyebrow">Instrumentos de Inversión</div>
+        <h2 class="section-title">Bonos</h2>
+        <p class="section-lead">Para los títulos de renta fija, brindamos servicios para ayudarlo a mejorar sus portafolios y buscar oportunidades de inversión. Plazo máximo de entrega 24 hs.</p>
+        <div class="alert alert-success" id="alert-bonos">Solicitud enviada. El reporte quedará disponible en su biblioteca en un plazo máximo de 24 horas hábiles.</div>
+
+        <div class="igrid">
+          <div class="icard">
+            <div class="icard-head">Bond Selection List</div>
+            <div class="icard-body">
+              <p>Las mejores ideas de inversión en renta fija individual reunidas aquí. Todos los créditos analizados y con seguimiento diario, para ahorrarle tiempo y aumentar la productividad de sus carteras.</p>
+              <div class="doc-list">
+                <a class="doc-link" href="https://maximusnextgeneration-code.github.io/Bond-Selecction-List/#top" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/></svg> Bond Selection List</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="icard">
+            <div class="icard-head">Solicitud de listado con condiciones</div>
+            <div class="icard-body">
+              <p>Completando el siguiente formulario le haremos llegar un listado de bonos específicos.</p>
+              <form id="form-listado" novalidate>
+                <div class="field-row">
+                  <div class="field"><label for="b-calidad">Calidad crediticia</label><select id="b-calidad"><option>AAA</option><option>AA</option><option>A</option><option>BBB</option><option>BB</option><option>B</option><option>Sin restricción</option></select></div>
+                  <div class="field"><label for="b-emisor">Tipo de emisor</label><select id="b-emisor"><option>Gobierno</option><option>Corporativo</option><option>Supranacional</option><option>Indistinto</option></select></div>
+                </div>
+                <div class="field-row">
+                  <div class="field"><label for="b-monto">Monto mínimo operable</label><input type="number" id="b-monto" placeholder="ej. 1000" min="0"></div>
+                  <div class="field"><label for="b-moneda">Moneda/s</label><input type="text" id="b-moneda" placeholder="USD, EUR…"></div>
+                </div>
+                <div class="field-row">
+                  <div class="field"><label for="b-ytm">YTM mínimo (%)</label><input type="number" id="b-ytm" placeholder="ej. 6" step="0.1"></div>
+                  <div class="field"><label for="b-venc">Vencimiento (años)</label><input type="number" id="b-venc" placeholder="ej. 5" min="0"></div>
+                </div>
+                <div class="field"><label class="checkbox-field"><input type="checkbox" id="b-perp"> ¿Desea incluir bonos perpetuos y/o acciones preferidas?</label></div>
+                <div class="field"><label for="b-coment">Comentarios</label><textarea id="b-coment" placeholder="Condiciones adicionales…"></textarea></div>
+                <button type="submit" class="btn btn-gold">Solicitar listado</button>
+              </form>
+            </div>
+          </div>
+
+          <div class="icard">
+            <div class="icard-head">Análisis de un bono específico</div>
+            <div class="icard-body">
+              <p>Ingresando ISIN de cualquier bono o nombre de la emisión, le hacemos llegar un análisis con nuestras recomendaciones.</p>
+              <form id="form-bono-analisis" novalidate>
+                <div class="field"><label for="ba-isin">Código ISIN o nombre <span class="req">*</span></label><input type="text" id="ba-isin" placeholder="Código ISIN o nombre de la emisión"></div>
+                <button type="submit" class="btn btn-gold">Solicitar análisis de un bono</button>
+              </form>
+            </div>
+          </div>
+
+          <div class="icard">
+            <div class="icard-head">How can I swap?</div>
+            <div class="icard-body">
+              <p>Ingresando ISIN de cualquier bono o nombre de la emisión, le hacemos llegar una idea que agregue valor.</p>
+              <form id="form-swap" novalidate>
+                <div class="field"><label for="sw-isin">Código ISIN o nombre <span class="req">*</span></label><input type="text" id="sw-isin" placeholder="Código ISIN o nombre de la emisión"></div>
+                <div class="field"><label for="sw-coment">Comentarios</label><textarea id="sw-coment" placeholder="Objetivo del swap…"></textarea></div>
+                <button type="submit" class="btn btn-gold">Solicitar swap</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ FONDOS MUTUOS ============ -->
+      <section class="form-section" id="sec-fondos">
+        <div class="section-eyebrow">Instrumentos de Inversión</div>
+        <h2 class="section-title">Fondos Mutuos</h2>
+        <p class="section-lead">Disponemos de diferentes herramientas para ayudarlo a construir los mejores portafolios. Plazo máximo de entrega 24 hs.</p>
+        <div class="alert alert-success" id="alert-fondos">Solicitud enviada. El reporte quedará disponible en su biblioteca en un plazo máximo de 24 horas hábiles.</div>
+
+        <div class="igrid">
+          <div class="icard">
+            <div class="icard-head">Mejores en su clase</div>
+            <div class="icard-body">
+              <ul class="bullets">
+                <li>Surge de un minucioso análisis de un universo de más de 1.000 fondos bajo observación.</li>
+                <li>Se adaptan a nuestra visión actual del mercado y sus perspectivas a futuro.</li>
+              </ul>
+              <div class="doc-list">
+                <a class="doc-link" href="https://maximusnextgeneration-code.github.io/TRL-Fondos/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/></svg> Top Recommendations</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="icard">
+            <div class="icard-head">Factsheet Delivery</div>
+            <div class="icard-body">
+              <p>Ingresando ISIN o nombre del fondo le enviamos el último factsheet a su correo.</p>
+              <form id="form-factsheet" novalidate>
+                <div class="field"><label for="fs-isin">Código ISIN del fondo o nombre <span class="req">*</span></label><input type="text" id="fs-isin" placeholder="ISIN o nombre del fondo"></div>
+                <button type="submit" class="btn btn-gold">Solicitar Factsheet</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="icard" style="margin-top:20px;">
+          <div class="icard-head">Análisis de fondos mutuos</div>
+          <div class="icard-body">
+            <p>Disponemos de diferentes herramientas para ayudarlo a construir los mejores portafolios.</p>
+            <div class="igrid" style="margin-top:0;">
+              <div>
+                <label style="display:block;font-size:13px;font-weight:600;margin-bottom:8px;">Comparativos modelo</label>
+                <div class="doc-list">
+                  <a class="doc-link" href="assets/pdf/side_by_side_equities.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/></svg> Side by Side Equities</a>
+                  <a class="doc-link" href="assets/pdf/modelo_acciones.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/></svg> Modelo Acciones</a>
+                  <a class="doc-link" href="assets/pdf/modelo_renta_fija.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/></svg> Modelo Renta Fija</a>
+                </div>
+              </div>
+              <div>
+                <form id="form-fondo-analisis" novalidate>
+                  <div class="field"><label for="fa-isin">Análisis de fondo <span class="req">*</span></label><input type="text" id="fa-isin" placeholder="Código ISIN o nombre"></div>
+                  <div class="field"><label for="fa-coment">Comentarios</label><textarea id="fa-coment" placeholder="…"></textarea></div>
+                  <button type="submit" class="btn btn-gold">Solicitar análisis de Fondo</button>
+                </form>
+              </div>
+              <div>
+                <form id="form-fondo-comp" novalidate>
+                  <div class="field"><label for="fc-isins">Solicitar comparativos <span class="req">*</span></label><textarea id="fc-isins" placeholder="Ingrese los códigos ISIN (uno por línea)"></textarea><div class="hint">Compare un fondo con otro o con varios.</div></div>
+                  <button type="submit" class="btn btn-gold">Solicitar comparativo</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ ETFS ============ -->
+      <section class="form-section" id="sec-etfs">
+        <div class="section-eyebrow">Instrumentos de Inversión</div>
+        <h2 class="section-title">ETFs</h2>
+        <p class="section-lead">El mundo de los ETFs está cambiando y su utilización avanza a gran ritmo. Ponemos a su disposición nuestras herramientas de análisis y las mejores ideas de inversión asociadas a cada necesidad. Plazo máximo de entrega 24 hs.</p>
+        <div class="alert alert-success" id="alert-etfs">Solicitud enviada. El reporte quedará disponible en su biblioteca en un plazo máximo de 24 horas hábiles.</div>
+
+        <div class="igrid">
+          <div class="icard">
+            <div class="icard-head">Estrategia</div>
+            <div class="icard-body">
+              <p>Nuestra estrategia exclusiva de ETFs está diseñada para el cliente latinoamericano, buscando de manera activa la combinación de los distintos activos de acuerdo a un perfil moderado.</p>
+              <div class="doc-list">
+                <a class="doc-link" href="assets/pdf/estrategia_etfs.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/></svg> Estrategia ETF's</a>
+                <a class="doc-link" href="assets/pdf/etf_dashboard.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/></svg> ETF's Dashboard</a>
+              </div>
+            </div>
+          </div>
+          <div class="icard">
+            <div class="icard-head">Básicos imperdibles</div>
+            <div class="icard-body">
+              <p>Claves para participar de un mercado que ofrece eficiencia y valor para los inversores.</p>
+              <div class="doc-list">
+                <a class="doc-link" href="assets/pdf/conceptos_basicos.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/></svg> Conceptos Básicos</a>
+                <a class="doc-link" href="assets/pdf/marco_de_seleccion.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/></svg> Marco de Selección</a>
+                <a class="doc-link" href="assets/pdf/us_versus_ucits.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/></svg> US versus UCITS</a>
+              </div>
+            </div>
+          </div>
+          <div class="icard">
+            <div class="icard-head">ETFs listados en US</div>
+            <div class="icard-body">
+              <p>Encontrá una completa selección de los mejores ETFs domiciliados en EEUU.</p>
+              <div class="doc-list">
+                <a class="doc-link" href="assets/pdf/us_top_recommendation_list.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/></svg> US Listed Top Recommendation List</a>
+                <a class="doc-link" href="assets/pdf/us_performance_sheet.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/></svg> US Listed Performance Sheet</a>
+              </div>
+            </div>
+          </div>
+          <div class="icard">
+            <div class="icard-head">ETFs UCITS</div>
+            <div class="icard-body">
+              <p>Porque el universo offshore es clave en nuestro enfoque, le presentamos una completa selección de los mejores ETFs UCITS.</p>
+              <div class="doc-list">
+                <a class="doc-link" href="assets/pdf/ucits_performance_sheet.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/></svg> UCITS Listed Performance Sheet</a>
+              </div>
+            </div>
+          </div>
+          <div class="icard">
+            <div class="icard-head">Análisis de ETF o sector</div>
+            <div class="icard-body">
+              <p>Ingresando ticker o nombre de cualquier ETF, le hacemos llegar un análisis con nuestras recomendaciones.</p>
+              <form id="form-etf-analisis" novalidate>
+                <div class="field"><label for="ea-ticker">Ticker o sector <span class="req">*</span></label><input type="text" id="ea-ticker" placeholder="Ticker o sector"></div>
+                <div class="field"><label for="ea-coment">Comentarios</label><textarea id="ea-coment" placeholder="…"></textarea></div>
+                <button type="submit" class="btn btn-gold">Solicitar análisis</button>
+              </form>
+            </div>
+          </div>
+          <div class="icard">
+            <div class="icard-head">Solicitar comparativos</div>
+            <div class="icard-body">
+              <p>Compare de manera directa dos ETFs ingresando sus tickers.</p>
+              <form id="form-etf-h2h" novalidate>
+                <div class="field"><label for="h2h-a">Ticker <span class="req">*</span></label><input type="text" id="h2h-a" placeholder="ej. SPY" style="text-transform:uppercase;"></div>
+                <div class="vs-divider">VS</div>
+                <div class="field"><label for="h2h-b">Ticker <span class="req">*</span></label><input type="text" id="h2h-b" placeholder="ej. VOO" style="text-transform:uppercase;"></div>
+                <button type="submit" class="btn btn-gold">Solicitar Head to Head</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ ACCIONES, PREFERIDAS Y ESTRUCTURADOS ============ -->
+      <section class="form-section" id="sec-acciones">
+        <div class="section-eyebrow">Instrumentos de Inversión</div>
+        <h2 class="section-title">Acciones, Preferidas y Estructurados</h2>
+        <p class="section-lead">La cantidad y variedad en la oferta junto con la alta complejidad de los Estructurados amerita un análisis concienzudo y profesional de los riesgos de este tipo de productos. Aquí le presentamos una selección de ideas ya evaluadas. Plazo máximo de entrega 24 hs.</p>
+        <div class="alert alert-success" id="alert-acciones">Solicitud enviada. El reporte quedará disponible en su biblioteca en un plazo máximo de 24 horas hábiles.</div>
+
+        <div class="igrid">
+          <div class="icard">
+            <div class="icard-head">Equity Targets</div>
+            <div class="icard-body">
+              <p>Le presentamos las expectativas de rendimiento de las principales bolsas del mundo. Seleccione el índice, despliegue sus componentes, aplique los filtros y obtendrá información actualizada según sus preferencias.</p>
+              <div class="doc-list">
+                <a class="doc-link" href="https://maximusnextgeneration-code.github.io/Equity-Targets/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" style="fill:#1A7A4A"><path d="M6 2h9l5 5v15H6z"/></svg> Equity Targets</a>
+              </div>
+            </div>
+          </div>
+          <div class="icard">
+            <div class="icard-head">Acciones preferentes</div>
+            <div class="icard-body">
+              <div class="doc-list">
+                <a class="doc-link" href="#"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/></svg> Listado de acciones preferidas</a>
+              </div>
+            </div>
+          </div>
+          <div class="icard">
+            <div class="icard-head">Análisis de una acción específica</div>
+            <div class="icard-body">
+              <p>Ingresando el ticker de cualquier acción o nombre de la compañía, le hacemos llegar un análisis con nuestras recomendaciones.</p>
+              <form id="form-accion-analisis" novalidate>
+                <div class="field"><label for="aa-ticker">Código ISIN, ticker o nombre <span class="req">*</span></label><input type="text" id="aa-ticker" placeholder="Ticker o nombre de la compañía"></div>
+                <button type="submit" class="btn btn-gold">Solicitar análisis</button>
+              </form>
+            </div>
+          </div>
+          <div class="icard">
+            <div class="icard-head">Equity Snapshot</div>
+            <div class="icard-body">
+              <p>Ingresando el ticker de cualquier acción le hacemos llegar un flash report con una instantánea de las métricas operativas y financieras clave de una empresa.</p>
+              <form id="form-equity-snapshot" novalidate>
+                <div class="field"><label for="es-ticker">Código ISIN, ticker o nombre <span class="req">*</span></label><input type="text" id="es-ticker" placeholder="Ticker o nombre"></div>
+                <div class="field"><label class="checkbox-field"><input type="checkbox" id="es-tiene"> ¿Tiene la acción?</label></div>
+                <div class="field"><label for="es-coment">Comentarios</label><textarea id="es-coment" placeholder="…"></textarea></div>
+                <button type="submit" class="btn btn-gold">Solicitar análisis</button>
+              </form>
+            </div>
+          </div>
+          <div class="icard">
+            <div class="icard-head">Solicitud de producto estructurado a medida</div>
+            <div class="icard-body">
+              <p>Completando tres filtros le hacemos llegar propuestas de productos estructurados.</p>
+              <form id="form-estructurado-medida" novalidate>
+                <div class="field-row">
+                  <div class="field"><label for="pe-plazo">Plazo máximo (años)</label><input type="number" id="pe-plazo" placeholder="1" min="0"></div>
+                  <div class="field"><label for="pe-tipo">Tipo de producto</label><select id="pe-tipo"><option>Autocallable</option><option>Phoenix</option><option>Reverse Convertible</option><option>Capital protegido</option></select></div>
+                </div>
+                <div class="field"><label for="pe-rend">Rendimiento esperado %</label><input type="number" id="pe-rend" placeholder="ej. 10" step="0.1"></div>
+                <div class="field"><label for="pe-coment">Comentarios</label><textarea id="pe-coment" placeholder="Subyacentes preferidos, restricciones…"></textarea></div>
+                <button type="submit" class="btn btn-gold">Solicitar producto estructurado</button>
+              </form>
+            </div>
+          </div>
+          <div class="icard">
+            <div class="icard-head">Análisis de producto estructurado</div>
+            <div class="icard-body">
+              <p>Como parte de nuestro paquete de servicios y soluciones, llevamos a cabo un análisis detallado de un producto estructurado específico.</p>
+              <form id="form-estructurado-analisis" novalidate>
+                <div class="field">
+                  <label>Ficha PDF del producto <span class="req">*</span></label>
+                  <div class="file-field"><label class="file-trigger" for="f-ficha">Seleccionar archivo</label><span class="file-name" data-for="f-ficha">Ningún archivo seleccionado</span><input type="file" id="f-ficha" accept=".pdf"></div>
+                </div>
+                <div class="field"><label for="pa-coment">Comentarios</label><textarea id="pa-coment" placeholder="…"></textarea></div>
+                <button type="submit" class="btn btn-gold">Solicitar análisis</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

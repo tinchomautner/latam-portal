@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acceso clientes — LATAM ConsultUs</title>
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<div class="login-wrap">
+
+  <!-- ASIDE (brand) -->
+  <aside class="login-aside">
+    <div class="login-aside-content">
+      <a href="https://www.latamconsultus.com/" class="logo on-dark">
+        <img src="assets/img/logo-latam-blanco.png" alt="LATAM ConsultUs — El valor de ser independiente" class="brand-logo">
+      </a>
+      <h2>Bienvenido al<br><span>Portal de Clientes</span></h2>
+      <p>Acceda a sus reportes, solicite análisis de portafolio y gestione sus informes desde un único lugar.</p>
+      <ul class="login-features">
+        <li><svg viewBox="0 0 20 20"><path d="M8 13.2L4.8 10l-1.1 1.1L8 15.4l8.5-8.5-1.1-1.1z"/></svg> Solicitud de reportes y diagnósticos</li>
+        <li><svg viewBox="0 0 20 20"><path d="M8 13.2L4.8 10l-1.1 1.1L8 15.4l8.5-8.5-1.1-1.1z"/></svg> Biblioteca personal de informes</li>
+        <li><svg viewBox="0 0 20 20"><path d="M8 13.2L4.8 10l-1.1 1.1L8 15.4l8.5-8.5-1.1-1.1z"/></svg> Análisis de portafolio a medida</li>
+      </ul>
+    </div>
+    <div class="login-aside-foot">© 2026 LATAM ConsultUs · Punta del Este, Uruguay</div>
+  </aside>
+
+  <!-- LOGIN FORM -->
+  <main class="login-main">
+    <div class="login-card">
+      <h3>Iniciar sesión</h3>
+      <p class="sub">Ingrese sus credenciales para acceder al portal.</p>
+
+      <div class="alert alert-error" id="loginAlert">Por favor complete usuario y contraseña.</div>
+
+      <form id="loginForm" novalidate>
+        <div class="field">
+          <label for="usuario">Usuario / Email <span class="req">*</span></label>
+          <input type="text" id="usuario" name="usuario" placeholder="cliente@empresa.com" autocomplete="username">
+        </div>
+        <div class="field">
+          <label for="clave">Contraseña <span class="req">*</span></label>
+          <input type="password" id="clave" name="clave" placeholder="••••••••" autocomplete="current-password">
+        </div>
+        <div class="field">
+          <label class="checkbox-field"><input type="checkbox" id="recordar"> Mantener sesión iniciada</label>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-gold btn-block btn-lg">Ingresar</button>
+        </div>
+      </form>
+
+      <p style="text-align:center; margin-top:24px; font-size:13px; color:var(--text-muted);">
+        ¿Olvidó su contraseña? <a href="#" style="color:var(--blue); font-weight:600;">Recuperar acceso</a>
+      </p>
+      <p style="text-align:center; margin-top:8px; font-size:13px; color:var(--text-muted);">
+        ¿No tiene cuenta? <a href="#" style="color:var(--blue); font-weight:600;">Contacte a su asesor</a>
+      </p>
+    </div>
+  </main>
+
+</div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
